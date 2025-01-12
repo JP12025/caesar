@@ -53,8 +53,23 @@ $ ./caesar 1 2 3
 Usage: ./caesar key
 ```
 ```bash
+$ ./caesar 1 
+plaintext : AA
+ciphertext: BB
+```
+```bash
+$ ./caesar 1 
+plaintext : Ab
+ciphertext: Bc
+```
+```bash
+$ ./caesar 2 
+plaintext : Ab, cD
+ciphertext: Cd, eF
+```
+```bash
 $ ./caesar 13 
-plaintext: Hi there! 
+plaintext : Hi there! 
 ciphertext: Uv gurer!
 ```
 
