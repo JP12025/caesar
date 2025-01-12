@@ -1,7 +1,7 @@
 #! /usr/bin/env sh
 
 # File to test
-EXP_SCRIPT="readability"
+EXP_SCRIPT="caesar"
 
 # Text colors
 COLOR_REST="$(tput sgr0)"
@@ -21,6 +21,7 @@ then
     GIVEN_SCRIPT="${1}"
 else
     printf "Give the script name in command line\n"
+    exit
 fi
 
 ##################################################
@@ -59,11 +60,12 @@ fi
 run_test () {
     TEST_NAME=$1
     TEST_NUM=$2
+    TEST_ARG=$3
     TEST_IN=.test/${TEST_NUM}.in
     TEST_EXP=.test/${TEST_NUM}.exp
     TEST_OUT=".test/${TEST_NUM}_test.out"
     TEST_DIFF=".test/${TEST_NUM}_test.diff"
-    ./${EXP_SCRIPT} ${TEST_IN}  > ${TEST_OUT}
+    ./${EXP_SCRIPT} ${TEST_ARG} < ${TEST_IN}  > ${TEST_OUT}
     diff ${TEST_EXP} ${TEST_OUT} > ${TEST_DIFF}
     NB_DIFF=`cat ${TEST_DIFF} | wc -l`
     NB_TEST_TOTAL=$((NB_TEST_TOTAL+1))
@@ -76,6 +78,7 @@ run_test () {
     else
         printf "\n"
         printf "${TEST_NUM} ${COLOR_RED}\xE2\x9C\x97${COLOR_REST} ${TEST_NAME}\n"
+        printf "./${EXP_SCRIPT} ${TEST_ARG} < ${TEST_IN}  > ${TEST_OUT}\n"
         printf "${COLOR_GREEN}Expected${COLOR_REST}\n"
         grep "<" ${TEST_DIFF}
         printf "${COLOR_RED}Given${COLOR_REST}\n"
@@ -87,16 +90,16 @@ run_test () {
 ##################################################
 # Run tests
 ##################################################
-run_test "Readability -1" "01"
-run_test "Readability 2" "02"
-run_test "Readability 3" "03"
-run_test "Readability 5" "04"
-run_test "Readability 7" "05"
-run_test "Readability 8" "06"
-run_test "Readability 8" "07"
-run_test "Readability 9" "08"
-run_test "Readability 10" "09"
-run_test "Readability 16+" "10"
+run_test "Caesar No param" "01" ""
+run_test "Caesar 13: Hi there! -> Uv gurer!" "02" "13"
+run_test "Caesar  1: AA -> BB" "03" "1"
+run_test "Caesar  1: Ab -> Bc" "04" "1"
+run_test "Caesar  2: Ab, cD -> Cd, eF" "05" "2"
+run_test "Caesar  5: ExPiaLiDoCiouS" "06" "5"
+run_test "Caesar 17: SuperCaliFragiLisTic" "07" "17"
+run_test "Caesar 21: JcUnfQnItHntzX" "08" "21"
+run_test "Caesar Hello" "09" "HELLO"
+run_test "Caesar 1 2 3" "10" "1 2 3"
 
 ##################################################
 # Print Summary
