@@ -57,10 +57,6 @@ $ ./caesar 13
 plaintext: Hi there! 
 ciphertext: Uv gurer!
 ```
-``` bash
-$ ./caesar 26 
-plaintext: This is CS50.
-```
 
 # How to Submit
 
