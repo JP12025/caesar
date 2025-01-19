@@ -100,6 +100,8 @@ run_test "Caesar 17: SuperCaliFragiLisTic" "07" "17"
 run_test "Caesar 21: JcUnfQnItHntzX" "08" "21"
 run_test "Caesar Hello" "09" "HELLO"
 run_test "Caesar 1 2 3" "10" "1 2 3"
+run_test "Caesar 13 -r: Uv gurer! -> Hi there!" "11" "13 -r"
+run_test "Caesar 19 -r: Ab maxkx! -> Hi there!" "12" "19 -r"
 
 ##################################################
 # Print Summary
