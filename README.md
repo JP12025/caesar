@@ -60,7 +60,7 @@ ciphertext: Kl
 ```
 
 There must be one parameter and it must be a positive integer.
-If not the program should exit with message `Usage: ./caesar key`.
+If not, the program should exit with message `Usage: ./caesar key`.
 
 ```bash
 $ ./caesar
