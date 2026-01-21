@@ -22,8 +22,11 @@ def test_caesar_empty():
 
 def test_caesar_bad_key_01():
     """Test caesar.py"""
+    param = [caesar_path, "HELLO"]
+    if sys.platform == "win32":
+        param = ["python", caesar_path, "HELLO"]
     result = subprocess.run(
-        [caesar_path, "HELLO"],
+        param,
         capture_output=True,
         text=True,
         check=False,
@@ -33,8 +36,11 @@ def test_caesar_bad_key_01():
 
 def test_caesar_bad_key_02():
     """Test caesar.py"""
+    param = [caesar_path, "1 2 3"]
+    if sys.platform == "win32":
+        param = ["python", caesar_path, "1 2 3"]
     result = subprocess.run(
-        [caesar_path, "1 2 3"],
+        param,
         capture_output=True,
         text=True,
         check=False,
