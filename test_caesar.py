@@ -6,12 +6,12 @@ import pytest
 
 
 caesar_path = os.path.join(os.path.dirname(__file__), "caesar")
-
+base_param = [caesar_path]
+if sys.platform == "win32":
+        base_param = ["python"] + base_param
 def test_caesar_empty():
     """Test caesar.py"""
-    param = [caesar_path]
-    if sys.platform == "win32":
-        param = ["python", caesar_path]
+    param = base_param
     result = subprocess.run(
         param,
         capture_output=True,
@@ -22,9 +22,7 @@ def test_caesar_empty():
 
 def test_caesar_bad_key_01():
     """Test caesar.py"""
-    param = [caesar_path, "HELLO"]
-    if sys.platform == "win32":
-        param = ["python", caesar_path, "HELLO"]
+    param = base_param + ["HELLO"]
     result = subprocess.run(
         param,
         capture_output=True,
@@ -36,9 +34,7 @@ def test_caesar_bad_key_01():
 
 def test_caesar_bad_key_02():
     """Test caesar.py"""
-    param = [caesar_path, "1 2 3"]
-    if sys.platform == "win32":
-        param = ["python", caesar_path, "1 2 3"]
+    param = base_param + ["1 2 3"]
     result = subprocess.run(
         param,
         capture_output=True,
@@ -73,9 +69,7 @@ DATA_OUT = [
 )
 def test_caesar_single(input_data, expected_output):
     """Test caesar.py"""
-    param = [caesar_path, input_data[0]]
-    if sys.platform == "win32":
-        param = ["python", caesar_path, input_data[0]]
+    param = base_param + [input_data[0]]
     result = subprocess.run(
         param,
         input=input_data[1],
@@ -87,9 +81,7 @@ def test_caesar_single(input_data, expected_output):
 
 def test_caesar_reverse_01():
     """Test caesar.py"""
-    param = [caesar_path, "13", "-r"]
-    if sys.platform == "win32":
-        param = ["python", caesar_path, "13", "-r"]
+    param = base_param + ["13", "-r"]
     result = subprocess.run(
         param,
         input="Uv gurer!",
@@ -101,9 +93,7 @@ def test_caesar_reverse_01():
 
 def test_caesar_reverse_02():
     """Test caesar.py"""
-    param = [caesar_path, "19", "-r"]
-    if sys.platform == "win32":
-        param = ["python", caesar_path, "19", "-r"]
+    param = base_param + ["19", "-r"]
     result = subprocess.run(
         param,
         input="Ab maxkx!",
