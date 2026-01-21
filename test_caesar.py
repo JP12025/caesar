@@ -1,14 +1,19 @@
 """Test caesar.py"""
+import os
+import sys
 import subprocess
 import pytest
-from os import path
 
-caesar_path = path.join(path.dirname(__file__), "caesar")
+
+caesar_path = os.path.join(os.path.dirname(__file__), "caesar")
 
 def test_caesar_empty():
     """Test caesar.py"""
+    param = [caesar_path]
+    if sys.platform == "win32":
+        param = ["python", caesar_path]
     result = subprocess.run(
-        [caesar_path],
+        param,
         capture_output=True,
         text=True,
         check=False,
