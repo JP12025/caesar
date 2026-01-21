@@ -1,13 +1,14 @@
 """Test caesar.py"""
-
 import subprocess
 import pytest
+from os import path
 
+caesar_path = path.join(path.dirname(__file__), "caesar")
 
 def test_caesar_empty():
     """Test caesar.py"""
     result = subprocess.run(
-        ["./caesar"],
+        [caesar_path],
         capture_output=True,
         text=True,
         check=False,
@@ -17,7 +18,7 @@ def test_caesar_empty():
 def test_caesar_bad_key_01():
     """Test caesar.py"""
     result = subprocess.run(
-        ["./caesar", "HELLO"],
+        [caesar_path, "HELLO"],
         capture_output=True,
         text=True,
         check=False,
@@ -28,7 +29,7 @@ def test_caesar_bad_key_01():
 def test_caesar_bad_key_02():
     """Test caesar.py"""
     result = subprocess.run(
-        ["./caesar", "1 2 3"],
+        [caesar_path, "1 2 3"],
         capture_output=True,
         text=True,
         check=False,
@@ -62,7 +63,7 @@ DATA_OUT = [
 def test_caesar_single(input_data, expected_output):
     """Test caesar.py"""
     result = subprocess.run(
-        ["./caesar", input_data[0]],
+        [caesar_path, input_data[0]],
         input=input_data[1],
         capture_output=True,
         text=True,
@@ -73,7 +74,7 @@ def test_caesar_single(input_data, expected_output):
 def test_caesar_reverse_01():
     """Test caesar.py"""
     result = subprocess.run(
-        ["./caesar", "13", "-r"],
+        [caesar_path, "13", "-r"],
         input="Uv gurer!",
         capture_output=True,
         text=True,
@@ -84,7 +85,7 @@ def test_caesar_reverse_01():
 def test_caesar_reverse_02():
     """Test caesar.py"""
     result = subprocess.run(
-        ["./caesar", "19", "-r"],
+        [caesar_path, "19", "-r"],
         input="Ab maxkx!",
         capture_output=True,
         text=True,
