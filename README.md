@@ -84,6 +84,8 @@ Usage: python caesar.py key
 > Notice that `'3'` is a `str`, not an `int`.
 > To stop your program right away, you may use `sys.exit()`.
 
+![Demo of caesar.py](caesar.gif)
+
 > [!TIP]
 > To find the position of a letter in the alphabet, you may use a string such as `"abcdefghijklmnopqrstuvwxyz"` and its method `index()`.
 > The methods `isupper()`, `islower()`, `upper()` and `lower()` will help you keep the case of each letter.
